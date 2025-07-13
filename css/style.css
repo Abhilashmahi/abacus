@@ -38,25 +38,27 @@ header {
   font-weight: bold;
   margin-right: auto;
 }
+
+/* NAVIGATION */
 nav {
   overflow-x: auto;
   width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 nav ul {
   display: flex;
-  gap: 15px;
-  list-style: none;
   flex-wrap: nowrap;
+  list-style: none;
+  gap: 15px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
   padding: 10px 0;
   margin: 0;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
 }
 
 nav ul::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none; /* Chrome/Safari */
 }
 
 nav ul li {
@@ -72,34 +74,37 @@ nav ul li a {
   position: relative;
   display: inline-block;
 }
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 
-  nav {
-    width: 100%;
-  }
-
-  .logo {
-    margin-bottom: 8px;
-  }
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 0;
+  left: 0;
+  bottom: -4px;
+  background-color: white;
+  transition: 0.3s ease;
 }
 
+nav ul li a:hover {
+  color: #ffdd57;
+}
 
+nav ul li a:hover::after {
+  width: 100%;
+}
 
-/* BACKGROUND IMAGE SECTION (just after fixed header) */
+/* BACKGROUND IMAGE SECTION */
 .bg-img {
   background: url("../images/wb.jpg") center/cover no-repeat;
   min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-top: 70px; /* space for fixed header only */
+  margin-top: 70px; /* space for fixed header */
 }
 
-/* SECOND BAR (green-bar) BELOW BACKGROUND */
+/* SECOND STICKY MENU */
 .green-bar {
   background: #0e5982;
   padding: 10px 0;
@@ -117,6 +122,15 @@ nav ul li a {
   gap: 20px;
   overflow-x: auto;
   white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.green-bar .menu::-webkit-scrollbar {
+  display: none;
+}
+
+.green-bar .menu li {
+  flex: 0 0 auto;
 }
 
 .green-bar .menu li a {
@@ -352,6 +366,10 @@ footer {
     align-items: flex-start;
   }
 
+  nav {
+    width: 100%;
+  }
+
   nav ul {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -369,5 +387,6 @@ footer {
 
   .logo {
     font-size: 1.3rem;
+    margin-bottom: 8px;
   }
 }
